@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'fernandogonzalezarias_tareas',
         'USER': 'fernandogonzalezarias_usertarea',
-        'PASSWORD': 'rj4135rj',
+        'PASSWORD': 'h@la123',
         'HOST': 'postgresql-fernandogonzalezarias.alwaysdata.net',
     }
 }
