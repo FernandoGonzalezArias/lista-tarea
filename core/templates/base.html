@@ -11,6 +11,22 @@
 
 <body>
     <div class="container">
+
+        <nav class="navbar  bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand text-light">Navbar</a>
+                <div class="d-flex align-items-center" >
+                    {% if user.is_authenticated %}
+                    <strong class="text-light">Hola: {{user.username}}</strong>
+                    <a href="/cerrar-sesion" class="btn btn-danger btn-sm ms-3 text-light">Cerrar sesion</a>
+                    {% else %}
+                    <a href="/iniciar-sesion" class="btn btn-danger btn-sm ms-3 text-light">Iniciar sesion</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+
         {% block content %}
         {% endblock %}
     </div>

@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from administrar.models import Tarea
 from .forms import TareaForm
+from django.contrib.auth import logout
+from .forms import LoginForm
+from django.contrib.auth import authenticate, login
 
 def v_index(request):
   if request.method == 'POST':
@@ -31,3 +34,30 @@ def v_completado(request, tarea_id):
   task.estado = 1
   task.save()
   return HttpResponseRedirect("/")
+
+def v_login(request):
+  if request.method == "POST":
+    form = LoginForm(request.POST)
+    if form.is_valid():
+      user = authenticate(username = form.cleaned_data["username"],
+      password = form.cleaned_data["password"])
+      if user is not None:
+        login(request, user)
+        return HttpResponseRedirect("/")
+      else:
+        return HttpResponseRedirect("/")
+    else:
+      return HttpResponseRedirect("/")
+  else:
+     context = {
+       "form": LoginForm(request.POST)
+     }
+     return render(request, "login.html", context)
+  
+  
+  
+def v_logout(request):
+   if request.user.is_authenticated:
+     logout(request)
+     
+   return HttpResponseRedirect("/")
